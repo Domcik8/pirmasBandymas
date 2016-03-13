@@ -24,6 +24,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Version;
 import javax.validation.constraints.Size;
 
 /**
@@ -33,14 +34,14 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name = "OBJECTTABLE")
 @NamedQueries({
-    @NamedQuery(name = "Objecttable.findAll", query = "SELECT o FROM Objecttable o"),
-    @NamedQuery(name = "Objecttable.findById", query = "SELECT o FROM Objecttable o WHERE o.id = :id"),
-    @NamedQuery(name = "Objecttable.findByInternalname", query = "SELECT o FROM Objecttable o WHERE o.internalname = :internalname"),
-    @NamedQuery(name = "Objecttable.findByIsdeleted", query = "SELECT o FROM Objecttable o WHERE o.isdeleted = :isdeleted"),
-    @NamedQuery(name = "Objecttable.findByCreateddate", query = "SELECT o FROM Objecttable o WHERE o.createddate = :createddate"),
-    @NamedQuery(name = "Objecttable.findByDeleteddate", query = "SELECT o FROM Objecttable o WHERE o.deleteddate = :deleteddate"),
-    @NamedQuery(name = "Objecttable.findByOptLockVersion", query = "SELECT o FROM Objecttable o WHERE o.optLockVersion = :optLockVersion")})
-public class Objecttable implements Serializable {
+    @NamedQuery(name = "ObjectTable.findAll", query = "SELECT o FROM ObjectTable o"),
+    @NamedQuery(name = "ObjectTable.findById", query = "SELECT o FROM ObjectTable o WHERE o.id = :id"),
+    @NamedQuery(name = "ObjectTable.findByInternalname", query = "SELECT o FROM ObjectTable o WHERE o.internalname = :internalname"),
+    @NamedQuery(name = "ObjectTable.findByIsdeleted", query = "SELECT o FROM ObjectTable o WHERE o.isdeleted = :isdeleted"),
+    @NamedQuery(name = "ObjectTable.findByCreateddate", query = "SELECT o FROM ObjectTable o WHERE o.createddate = :createddate"),
+    @NamedQuery(name = "ObjectTable.findByDeleteddate", query = "SELECT o FROM ObjectTable o WHERE o.deleteddate = :deleteddate"),
+    @NamedQuery(name = "ObjectTable.findByOptLockVersion", query = "SELECT o FROM ObjectTable o WHERE o.optLockVersion = :optLockVersion")})
+public class ObjectTable implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -60,6 +61,7 @@ public class Objecttable implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date deleteddate;
     @Column(name = "OPT_LOCK_VERSION")
+    @Version
     private Integer optLockVersion;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "objectid")
     private Role role;
@@ -82,29 +84,29 @@ public class Objecttable implements Serializable {
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "objectid")
     private House house;
     @OneToMany(mappedBy = "deletedby")
-    private List<Objecttable> objecttableList;
+    private List<ObjectTable> objecttableList;
     @JoinColumn(name = "DELETEDBY", referencedColumnName = "ID")
     @ManyToOne
-    private Objecttable deletedby;
+    private ObjectTable deletedby;
     @OneToMany(mappedBy = "createdby")
-    private List<Objecttable> objecttableList1;
+    private List<ObjectTable> objecttableList1;
     @JoinColumn(name = "CREATEDBY", referencedColumnName = "ID")
     @ManyToOne
-    private Objecttable createdby;
+    private ObjectTable createdby;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "typeid")
-    private List<Objecttable> objecttableList2;
+    private List<ObjectTable> objecttableList2;
     @JoinColumn(name = "TYPEID", referencedColumnName = "ID")
     @ManyToOne(optional = false)
-    private Objecttable typeid;
+    private ObjectTable typeid;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "objectid")
     private Type type;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "objectid")
     private Systemparameter systemparameter;
 
-    public Objecttable() {
+    public ObjectTable() {
     }
 
-    public Objecttable(Long id) {
+    public ObjectTable(Long id) {
         this.id = id;
     }
 
@@ -236,51 +238,51 @@ public class Objecttable implements Serializable {
         this.house = house;
     }
 
-    public List<Objecttable> getObjecttableList() {
+    public List<ObjectTable> getObjectTableList() {
         return objecttableList;
     }
 
-    public void setObjecttableList(List<Objecttable> objecttableList) {
+    public void setObjectTableList(List<ObjectTable> objecttableList) {
         this.objecttableList = objecttableList;
     }
 
-    public Objecttable getDeletedby() {
+    public ObjectTable getDeletedby() {
         return deletedby;
     }
 
-    public void setDeletedby(Objecttable deletedby) {
+    public void setDeletedby(ObjectTable deletedby) {
         this.deletedby = deletedby;
     }
 
-    public List<Objecttable> getObjecttableList1() {
+    public List<ObjectTable> getObjectTableList1() {
         return objecttableList1;
     }
 
-    public void setObjecttableList1(List<Objecttable> objecttableList1) {
+    public void setObjectTableList1(List<ObjectTable> objecttableList1) {
         this.objecttableList1 = objecttableList1;
     }
 
-    public Objecttable getCreatedby() {
+    public ObjectTable getCreatedby() {
         return createdby;
     }
 
-    public void setCreatedby(Objecttable createdby) {
+    public void setCreatedby(ObjectTable createdby) {
         this.createdby = createdby;
     }
 
-    public List<Objecttable> getObjecttableList2() {
+    public List<ObjectTable> getObjectTableList2() {
         return objecttableList2;
     }
 
-    public void setObjecttableList2(List<Objecttable> objecttableList2) {
+    public void setObjectTableList2(List<ObjectTable> objecttableList2) {
         this.objecttableList2 = objecttableList2;
     }
 
-    public Objecttable getTypeid() {
+    public ObjectTable getTypeid() {
         return typeid;
     }
 
-    public void setTypeid(Objecttable typeid) {
+    public void setTypeid(ObjectTable typeid) {
         this.typeid = typeid;
     }
 
@@ -310,10 +312,10 @@ public class Objecttable implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Objecttable)) {
+        if (!(object instanceof ObjectTable)) {
             return false;
         }
-        Objecttable other = (Objecttable) object;
+        ObjectTable other = (ObjectTable) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -322,7 +324,7 @@ public class Objecttable implements Serializable {
 
     @Override
     public String toString() {
-        return "lt.vu.entities.Objecttable[ id=" + id + " ]";
+        return "lt.vu.entities.ObjectTable[ id=" + id + " ]";
     }
     
 }

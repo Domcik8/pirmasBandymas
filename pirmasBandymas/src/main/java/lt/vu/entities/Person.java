@@ -25,6 +25,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -100,15 +101,16 @@ public class Person implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date membershipdue;
     @Column(name = "OPT_LOCK_VERSION")
+    @Version
     private Integer optLockVersion;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "personversionid")
     private List<Payment> paymentList;
     @JoinColumn(name = "ROLE", referencedColumnName = "ID")
     @ManyToOne(optional = false)
-    private Objecttable role;
+    private ObjectTable role;
     @JoinColumn(name = "OBJECTID", referencedColumnName = "ID")
     @OneToOne(optional = false)
-    private Objecttable objectid;
+    private ObjectTable objectid;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "personversionid")
     private List<Reservation> reservationList;
 
@@ -241,19 +243,19 @@ public class Person implements Serializable {
         this.paymentList = paymentList;
     }
 
-    public Objecttable getRole() {
+    public ObjectTable getRole() {
         return role;
     }
 
-    public void setRole(Objecttable role) {
+    public void setRole(ObjectTable role) {
         this.role = role;
     }
 
-    public Objecttable getObjectid() {
+    public ObjectTable getObjectid() {
         return objectid;
     }
 
-    public void setObjectid(Objecttable objectid) {
+    public void setObjectid(ObjectTable objectid) {
         this.objectid = objectid;
     }
 

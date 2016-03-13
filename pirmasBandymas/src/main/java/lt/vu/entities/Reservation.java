@@ -24,6 +24,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -64,6 +65,7 @@ public class Reservation implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date enddate;
     @Column(name = "OPT_LOCK_VERSION")
+    @Version
     private Integer optLockVersion;
     @JoinTable(name = "MULTISELECTRESERVATIONTOSERVICE", joinColumns = {
         @JoinColumn(name = "PARENTID", referencedColumnName = "ID")}, inverseJoinColumns = {
@@ -75,13 +77,13 @@ public class Reservation implements Serializable {
     private House houseversionid;
     @JoinColumn(name = "PERSONID", referencedColumnName = "ID")
     @ManyToOne(optional = false)
-    private Objecttable personid;
+    private ObjectTable personid;
     @JoinColumn(name = "HOUSEID", referencedColumnName = "ID")
     @ManyToOne(optional = false)
-    private Objecttable houseid;
+    private ObjectTable houseid;
     @JoinColumn(name = "OBJECTID", referencedColumnName = "ID")
     @OneToOne(optional = false)
-    private Objecttable objectid;
+    private ObjectTable objectid;
     @JoinColumn(name = "PERSONVERSIONID", referencedColumnName = "ID")
     @ManyToOne(optional = false)
     private Person personversionid;
@@ -156,27 +158,27 @@ public class Reservation implements Serializable {
         this.houseversionid = houseversionid;
     }
 
-    public Objecttable getPersonid() {
+    public ObjectTable getPersonid() {
         return personid;
     }
 
-    public void setPersonid(Objecttable personid) {
+    public void setPersonid(ObjectTable personid) {
         this.personid = personid;
     }
 
-    public Objecttable getHouseid() {
+    public ObjectTable getHouseid() {
         return houseid;
     }
 
-    public void setHouseid(Objecttable houseid) {
+    public void setHouseid(ObjectTable houseid) {
         this.houseid = houseid;
     }
 
-    public Objecttable getObjectid() {
+    public ObjectTable getObjectid() {
         return objectid;
     }
 
-    public void setObjectid(Objecttable objectid) {
+    public void setObjectid(ObjectTable objectid) {
         this.objectid = objectid;
     }
 

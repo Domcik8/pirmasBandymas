@@ -17,6 +17,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -54,10 +55,11 @@ public class Systemparameter implements Serializable {
     @Column(name = "VALUE")
     private int value;
     @Column(name = "OPT_LOCK_VERSION")
+    @Version
     private Integer optLockVersion;
     @JoinColumn(name = "OBJECTID", referencedColumnName = "ID")
     @OneToOne(optional = false)
-    private Objecttable objectid;
+    private ObjectTable objectid;
 
     public Systemparameter() {
     }
@@ -112,11 +114,11 @@ public class Systemparameter implements Serializable {
         this.optLockVersion = optLockVersion;
     }
 
-    public Objecttable getObjectid() {
+    public ObjectTable getObjectid() {
         return objectid;
     }
 
-    public void setObjectid(Objecttable objectid) {
+    public void setObjectid(ObjectTable objectid) {
         this.objectid = objectid;
     }
 

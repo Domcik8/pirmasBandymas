@@ -25,6 +25,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -78,6 +79,7 @@ public class House implements Serializable {
     @Column(name = "NUMBEROFPLACES")
     private Integer numberofplaces;
     @Column(name = "OPT_LOCK_VERSION")
+    @Version
     private Integer optLockVersion;
     @JoinTable(name = "MULTISELECTHOUSETOSERVICE", joinColumns = {
         @JoinColumn(name = "PARENTID", referencedColumnName = "ID")}, inverseJoinColumns = {
@@ -88,7 +90,7 @@ public class House implements Serializable {
     private List<Reservation> reservationList;
     @JoinColumn(name = "OBJECTID", referencedColumnName = "ID")
     @OneToOne(optional = false)
-    private Objecttable objectid;
+    private ObjectTable objectid;
 
     public House() {
     }
@@ -186,11 +188,11 @@ public class House implements Serializable {
         this.reservationList = reservationList;
     }
 
-    public Objecttable getObjectid() {
+    public ObjectTable getObjectid() {
         return objectid;
     }
 
-    public void setObjectid(Objecttable objectid) {
+    public void setObjectid(ObjectTable objectid) {
         this.objectid = objectid;
     }
 

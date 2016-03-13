@@ -21,6 +21,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -65,13 +66,14 @@ public class Payment implements Serializable {
     @Column(name = "PAIDWITHMONEY")
     private int paidwithmoney;
     @Column(name = "OPT_LOCK_VERSION")
+    @Version
     private Integer optLockVersion;
     @JoinColumn(name = "PERSONID", referencedColumnName = "ID")
     @ManyToOne(optional = false)
-    private Objecttable personid;
+    private ObjectTable personid;
     @JoinColumn(name = "OBJECTID", referencedColumnName = "ID")
     @OneToOne(optional = false)
-    private Objecttable objectid;
+    private ObjectTable objectid;
     @JoinColumn(name = "PERSONVERSIONID", referencedColumnName = "ID")
     @ManyToOne(optional = false)
     private Person personversionid;
@@ -139,19 +141,19 @@ public class Payment implements Serializable {
         this.optLockVersion = optLockVersion;
     }
 
-    public Objecttable getPersonid() {
+    public ObjectTable getPersonid() {
         return personid;
     }
 
-    public void setPersonid(Objecttable personid) {
+    public void setPersonid(ObjectTable personid) {
         this.personid = personid;
     }
 
-    public Objecttable getObjectid() {
+    public ObjectTable getObjectid() {
         return objectid;
     }
 
-    public void setObjectid(Objecttable objectid) {
+    public void setObjectid(ObjectTable objectid) {
         this.objectid = objectid;
     }
 
